@@ -4,7 +4,7 @@ An **AI agent skill pack** that turns an already-built feature into a short, sha
 
 Works with **any AI coding agent** that can load skill / instruction packs — including **Claude Code**, **Cursor**, and similar tools. The Markdown under `skills/` is the product; the host app is just how you invoke it.
 
-Built for teams that ship **build-first**: engineering implements from a light stakeholder brief, then design redesigns to a senior product-design bar. This skill recovers the product story from the **codebase** so designers are not guessing from a staging link alone.
+Built for teams that ship **build-first**: engineering implements from a light stakeholder brief, then design redesigns to a senior product-design bar. This skill recovers the product story from the **codebase** so designers are not guessing from a live-link alone.
 
 ---
 
@@ -15,9 +15,9 @@ A common workflow looks like this:
 1. Little or no product-design discovery up front  
 2. Devs build with agents from a boss/stakeholder ask  
 3. Features get validated in code  
-4. Design gets a staging link and is asked to “make it good”
+4. Design gets a live-link and is asked to “make it good”
 
-That handoff is thin. Designers need **what problem this solves**, **how the flow works today**, and **what is locked vs flexible** — without a fake full PRD, and without needing the whole design team to dig through the repo.
+That handoff is thin. Designers need **what problem this solves**, **how the flow works today**, and **what is locked vs flexible** — without a fake full PRD.
 
 `/dsgn-refresh` (or the same prompt in your agent) is the late-stage brief for that moment.
 
@@ -30,9 +30,9 @@ That handoff is thin. Designers need **what problem this solves**, **how the flo
 | Role | Role in the workflow |
 |------|----------------------|
 | **Engineer (with the app repo + any supported agent)** | Runs the skill against the codebase |
-| **Designers** | Use the Markdown brief + staging to redesign and validate |
+| **Designers** | Use the Markdown brief + live-link to redesign and validate |
 
-The **source of truth for extraction** is the **product codebase**. Staging is how designers **judge** the UI. The brief is written so people **without repo access** can use it.
+The **source of truth for extraction** is the **product codebase**. The **live-link** is how designers **judge** the UI.
 
 ---
 
@@ -146,6 +146,8 @@ Then run:
 - No fake stakeholder goals  
 - No file-path / “code map” dumps in the shared brief  
 - Say **designers** in briefs — not juniors or other titles  
+- Say **live-link**, not staging  
+- Do not write “you do not need the repo” (or similar) in briefs  
 - Eng questions are multiple choice in chat; they are not designer-facing output  
 
 Full instructions: [`skills/dsgn-refresh/SKILL.md`](skills/dsgn-refresh/SKILL.md).
@@ -156,7 +158,7 @@ Full instructions: [`skills/dsgn-refresh/SKILL.md`](skills/dsgn-refresh/SKILL.md
 
 1. Eng finishes a foundation slice of a feature  
 2. Eng runs `/dsgn-refresh <feature>` in their agent (answers 2–3 chat questions if asked)  
-3. Eng shares the Markdown brief (and staging link) with design  
+3. Eng shares the Markdown brief (and live-link) with design  
 4. Design redesigns against intent + flows + locked constraints  
 5. Quick design validation as usual  
 
