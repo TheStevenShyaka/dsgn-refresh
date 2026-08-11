@@ -1,20 +1,25 @@
 ---
 name: eng-questions
 description: >-
-  Produces at most 2–3 blocker questions for the engineer who built a feature,
-  from codebase gaps or an existing design brief. Use when the user runs
-  /eng-questions.
+  Asks at most 2–3 redesign-blocker questions in chat before a design brief is
+  written. Use when the user runs /eng-questions or needs a preflight
+  clarification pass for /dsgn-refresh.
 disable-model-invocation: true
 ---
 
 # /eng-questions
 
-Slice of **dsgn-refresh**. Read and follow [../dsgn-refresh/SKILL.md](../dsgn-refresh/SKILL.md) working rules.
+Preflight slice of **dsgn-refresh**. Read and follow [../dsgn-refresh/SKILL.md](../dsgn-refresh/SKILL.md) working rules.
+
+## Purpose
+
+Surface **blocker** clarifications for the engineer who built the feature **before** the shared brief is generated. This improves brief quality. It is **not** a section inside `docs/design-briefs/`.
 
 ## Do
 
 1. Require a free-text feature name (ask once if missing).
-2. Prefer reading an existing `docs/design-briefs/<slug>-brief.md` if present; otherwise skim the codebase for gaps only.
-3. Produce **at most 2–3** questions that block redesign (primary user, must-not-break, unclear branch). Skip fluff. If nothing critical is unclear, say so and write `None — code evidence was enough.`
-4. Update the Eng questions section in `docs/design-briefs/<slug>-brief.md` (create a minimal file from [../dsgn-refresh/template.md](../dsgn-refresh/template.md) if needed).
-5. Reply with the file path and paste the 2–3 questions in chat so the runner can send them to eng.
+2. Skim the codebase (and any existing brief) for gaps that would weaken Intent, Flows, or Locked vs flexible.
+3. Ask **at most 2–3** questions **in chat**. Stop and wait for answers.
+4. If nothing critical is unclear, say so in chat — do not invent filler questions.
+5. **Do not** add or keep an “Eng questions” section in the Markdown brief.
+6. After answers (or a clean skip), tell the runner to run `/dsgn-refresh <feature>` (or offer to continue into it if they ask).
