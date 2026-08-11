@@ -19,7 +19,7 @@ Surface **blocker** clarifications for the engineer who built the feature **befo
 
 1. Require a free-text feature name (ask once if missing).
 2. Skim the codebase (and any existing brief) for gaps that would weaken Intent, Flows, or Locked vs flexible.
-3. Ask **at most 2–3** questions **in chat**. Stop and wait for answers.
+3. Ask **at most 2–3** questions **in chat** as **multiple choice** (A/B/C… + Other/note when useful). Follow the preflight format in `dsgn-refresh`. Stop and wait for answers.
 4. If nothing critical is unclear, say so in chat — do not invent filler questions.
 5. **Do not** add or keep an “Eng questions” section in the Markdown brief.
 6. After answers (or a clean skip), tell the runner to run `/dsgn-refresh <feature>` (or offer to continue into it if they ask).
