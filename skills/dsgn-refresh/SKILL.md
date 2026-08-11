@@ -40,8 +40,8 @@ Never invent ticket history or stakeholder goals that are not evidenced in code 
 2. **Label evidence** — every material claim is `Observed` (in code) or `Inferred` (reasonable guess). After eng answers, upgrade clarified items to `Observed` (from eng) or fold into Locked/Flexible without leaving open questions in the doc.
 3. **Comments help, don’t worship them** — AI/dev comments can be wrong; cross-check behavior.
 4. **No fake tickets** — do not invent Jira/Slack context.
-5. **Eng questions are a preflight, not an output section** — ask at most 2–3 blocker questions **in chat before writing the brief**. Wait for answers. Never put an “Eng questions” section in the Markdown.
-6. **Write for designers** — plain language flows and intent. Most readers do **not** have repo access.
+5. **Eng questions are a preflight, not an output section** — ask at most 2–3 blocker questions **in chat before writing the brief**, as **multiple choice** (A/B/C…). Wait for answers. Never put an “Eng questions” section in the Markdown.
+6. **Write for designers** — plain language flows and intent. Say **designers** (not juniors, leads, or other titles). Most readers do **not** have repo access.
 7. **No codebase dump in the brief** — use the repo to extract truth, but do **not** put file paths, route strings (`/(auth)/…`), or a “code map” in the Markdown. Name screens and user actions instead.
 8. **Ship a file** — always write Markdown to disk (not chat-only), only after the preflight is done (or skipped because nothing critical is unclear).
 9. **One feature** — stay inside the named scope; do not boil the whole app.
@@ -87,7 +87,26 @@ Do **not** write the Markdown file yet.
 
 ### 4. Preflight eng questions (chat only)
 
-If a redesign blocker remains (e.g. primary success state, must-not-break behavior, unclear branch), ask **at most 2–3** questions in chat to the eng runner. Questions must be answerable in a few minutes.
+If a redesign blocker remains (e.g. primary success state, must-not-break behavior, unclear branch), ask **at most 2–3** questions in chat to the eng runner.
+
+**Format — multiple choice (required):** keep cognitive load low. Each question is a short prompt plus **2–4 lettered options**. Prefer decisive product choices over open essays. Add an **Other / note** option when the answer might not fit the list.
+
+Example shape:
+
+```text
+1. Confirm vs categorize — how should redesign treat these?
+   A) One combined inbox
+   B) Separate jobs
+   C) Other / note: …
+
+2. Product language to standardize on?
+   A) Need a category
+   B) Needs review
+   C) Uncategorized
+   D) Other / note: …
+```
+
+Accept answers like `1B 2A 3C` or short notes on Other.
 
 **Stop and wait** for answers before writing the brief.
 
@@ -101,7 +120,7 @@ Use eng answers to correct Intent, Flows, Locked vs flexible, and Assumptions. R
 
 ### 6. Write Markdown file
 
-Write the full brief using [template.md](template.md). Fill every section that applies; keep the doc short enough for three designers to skim.
+Write the full brief using [template.md](template.md). Fill every section that applies; keep the doc short enough for designers to skim.
 
 Do not include:
 - design-standards scoring (v1)
