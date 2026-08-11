@@ -17,7 +17,7 @@ A common workflow looks like this:
 3. Features get validated in code  
 4. Design gets a staging link and is asked to “make it good”
 
-That handoff is thin. Designers need **what problem this solves**, **how the flow works today**, and **what is locked vs flexible** — without a fake full PRD, and without needing every junior designer to dig through the repo.
+That handoff is thin. Designers need **what problem this solves**, **how the flow works today**, and **what is locked vs flexible** — without a fake full PRD, and without needing the whole design team to dig through the repo.
 
 `/dsgn-refresh` (or the same prompt in your agent) is the late-stage brief for that moment.
 
@@ -30,7 +30,7 @@ That handoff is thin. Designers need **what problem this solves**, **how the flo
 | Role | Role in the workflow |
 |------|----------------------|
 | **Engineer (with the app repo + any supported agent)** | Runs the skill against the codebase |
-| **Design lead + juniors** | Use the Markdown brief + staging to redesign and validate |
+| **Designers** | Use the Markdown brief + staging to redesign and validate |
 
 The **source of truth for extraction** is the **product codebase**. Staging is how designers **judge** the UI. The brief is written so people **without repo access** can use it.
 
@@ -71,9 +71,9 @@ Body:
 4. **Locked vs flexible** — what redesign must respect vs can reshape  
 5. **Assumptions**
 
-Juniors can open the `.md` in Drive/Docs/Notion later; they do not need an AI IDE.
+Designers can open the `.md` in Drive/Docs/Notion later; they do not need an AI IDE.
 
-**Eng questions are not in the brief.** They are a chat preflight (max 2–3) so the agent can fill gaps before writing the file.
+**Eng questions are not in the brief.** They are a chat preflight (max 2–3, **multiple choice**) so the agent can fill gaps before writing the file.
 
 ---
 
@@ -84,7 +84,7 @@ Juniors can open the `.md` in Drive/Docs/Notion later; they do not need an AI ID
 | **`/dsgn-refresh <feature>`** | Main — preflight if needed, then full short brief |
 | `/feature-intent <feature>` | Problem/job + Intent only |
 | `/feature-flows <feature>` | Flows only |
-| `/eng-questions <feature>` | Preflight only — ask ≤2–3 questions in chat (no brief section) |
+| `/eng-questions <feature>` | Preflight only — ask ≤2–3 multiple-choice questions in chat (no brief section) |
 
 Feature scope is **free text**, e.g. `onboarding`, `month review hero`.
 
@@ -135,7 +135,7 @@ Then run:
 1. Take the free-text feature name  
 2. Search the **codebase** (routes, screens, copy, state, comments)  
 3. Draft intent + flows privately; label claims `Observed` vs `Inferred`  
-4. **If blockers remain:** ask at most 2–3 eng questions **in chat** and **wait**  
+4. **If blockers remain:** ask at most 2–3 **multiple-choice** eng questions **in chat** and **wait**  
 5. Fold answers into the draft  
 6. Write `docs/design-briefs/<slug>-brief.md` from `template.md` (no Eng questions section)  
 7. Reply with the file path + confidence (not the whole brief)
@@ -145,7 +145,8 @@ Then run:
 - Code is truth — not messy tickets or chat history  
 - No fake stakeholder goals  
 - No file-path / “code map” dumps in the shared brief  
-- Eng questions improve the brief; they are not designer-facing output  
+- Say **designers** in briefs — not juniors or other titles  
+- Eng questions are multiple choice in chat; they are not designer-facing output  
 
 Full instructions: [`skills/dsgn-refresh/SKILL.md`](skills/dsgn-refresh/SKILL.md).
 
