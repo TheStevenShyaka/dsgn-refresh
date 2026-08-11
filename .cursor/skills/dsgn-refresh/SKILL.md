@@ -27,21 +27,22 @@ If the feature name is missing, ask once for it, then continue.
 |--------|------|
 | **Codebase** | Required. Only trusted source |
 | Comments in code | Helpful hints — verify against real routes/UI/state |
+| Eng answers (chat) | Preflight clarifications that improve the brief — not pasted as a Q&A section |
 | Staging / preview | For designers judging the UI — not an input this skill must record |
-| Slack / Linear / Jira / chat | Ignore for v1 unless the user pastes text into the prompt |
+| Slack / Linear / Jira / chat history | Ignore for v1 unless the user pastes text into the prompt |
 
-Never invent ticket history or stakeholder goals that are not evidenced in code (or in text the user pasted).
+Never invent ticket history or stakeholder goals that are not evidenced in code (or in answers the eng runner gives).
 
 ## Working rules
 
 1. **Code is truth** — prefer routes, screens, components, copy, state, and API usage over any external story.
-2. **Label evidence** — every material claim is `Observed` (in code) or `Inferred` (reasonable guess).
+2. **Label evidence** — every material claim is `Observed` (in code) or `Inferred` (reasonable guess). After eng answers, upgrade clarified items to `Observed` (from eng) or fold into Locked/Flexible without leaving open questions in the doc.
 3. **Comments help, don’t worship them** — AI/dev comments can be wrong; cross-check behavior.
 4. **No fake tickets** — do not invent Jira/Slack context.
-5. **Ask eng only for blockers** — at most 2–3 questions; skip the section if unnecessary.
+5. **Eng questions are a preflight, not an output section** — ask at most 2–3 blocker questions **in chat before writing the brief**. Wait for answers. Never put an “Eng questions” section in the Markdown.
 6. **Write for designers** — plain language flows and intent. Most readers do **not** have repo access.
 7. **No codebase dump in the brief** — use the repo to extract truth, but do **not** put file paths, route strings (`/(auth)/…`), or a “code map” in the Markdown. Name screens and user actions instead.
-8. **Ship a file** — always write Markdown to disk (not chat-only).
+8. **Ship a file** — always write Markdown to disk (not chat-only), only after the preflight is done (or skipped because nothing critical is unclear).
 9. **One feature** — stay inside the named scope; do not boil the whole app.
 10. **Brief header stays thin** — only **Scope** and **Confidence**. Do not add Generated date or Staging/preview fields.
 
@@ -53,12 +54,11 @@ Copy and track:
 /dsgn-refresh progress:
 - [ ] 1. Scope + slug
 - [ ] 2. Locate code
-- [ ] 3. Extract intent
-- [ ] 4. Map flows
-- [ ] 5. Locked vs flexible
-- [ ] 6. Assumptions + eng questions
-- [ ] 7. Write Markdown file
-- [ ] 8. Point user at the file path
+- [ ] 3. Draft intent + flows + locked/flexible (private)
+- [ ] 4. Preflight eng questions (chat) — or skip if clear
+- [ ] 5. Fold answers into the draft
+- [ ] 6. Write Markdown file
+- [ ] 7. Point user at the file path
 ```
 
 ### 1. Scope + slug
@@ -76,51 +76,57 @@ Prefer the app package the feature lives in; touch backend only when behavior de
 
 Read enough to cover: entry points, main UI, navigation, empty/error/auth branches, and key comments. Stop when the happy path and important branches are clear — do not map the entire product.
 
-If you cannot find the feature with reasonable confidence, write a short stub brief that states what was unclear (in product language) and ask the user to refine the free-text name. Still write the file.
+If you cannot find the feature at all, ask the user to refine the free-text name **before** writing a stub brief.
 
-### 3. Extract intent
+### 3. Draft privately
 
-From code + user-visible copy, draft Problem/job and Intent. Prefer “appears to…” for inferred outcomes. No fake research, personas, or boss quotes.
+From code + user-visible copy, draft Problem/job, Intent, Flows, Locked vs flexible, and Assumptions. Prefer “appears to…” for inferred outcomes. No fake research, personas, or boss quotes.
 
-### 4. Map flows
+Do **not** write the Markdown file yet.
 
-Document happy path and key branches that exist in code (empty, error, permission, and other real branches only). Describe steps with **screen names and CTAs** designers will see in staging — not repo paths.
+### 4. Preflight eng questions (chat only)
 
-### 5. Locked vs flexible
+If a redesign blocker remains (e.g. primary success state, must-not-break behavior, unclear branch), ask **at most 2–3** questions in chat to the eng runner. Questions must be answerable in a few minutes.
 
-- **Locked:** data model, API contracts, required steps, roles/permissions, persistence that redesign must respect.
-- **Flexible:** layout, hierarchy, visual treatment, microcopy framing, empty/error presentation — unless code hard-requires a specific sequence.
+**Stop and wait** for answers before writing the brief.
 
-### 6. Assumptions + eng questions
+If nothing critical is unclear, skip this step — do not invent filler questions.
 
-List sharp assumptions. Add **at most 2–3** eng questions only if a redesign blocker remains (e.g. primary user, must-not-break behavior, unclear branch). Questions must be answerable in a few minutes. If nothing critical is unclear, omit the Eng questions section or leave a single line: `None — product evidence was enough.`
+Do not paste these questions into the brief. Their job is to improve coverage for the next step.
 
-### 7. Write Markdown file
+### 5. Fold answers in
+
+Use eng answers to correct Intent, Flows, Locked vs flexible, and Assumptions. Remove “confirm with eng…” leftovers. The shared doc should read as decided enough for design to start.
+
+### 6. Write Markdown file
 
 Write the full brief using [template.md](template.md). Fill every section that applies; keep the doc short enough for three designers to skim.
 
-Do not include design-standards scoring in v1.
-Do not include a Code map / file index in the brief. If an eng runner needs pointers, put one short path list in the **chat reply only**, not in the shared Markdown.
+Do not include:
+- design-standards scoring (v1)
+- Code map / file index
+- Eng questions section
 
-### 8. Reply to the user
+If an eng runner needs repo pointers, put a short path list in the **chat reply only**.
+
+### 7. Reply to the user
 
 In chat, only:
 
 1. Absolute or repo-relative path to the written file
 2. One-line confidence note
-3. The 2–3 eng questions (if any) so the runner can paste them to the builder
 
 Do not paste the entire brief into chat unless the user asks.
 
 ## Slice commands
 
-If the user runs a slice instead of full refresh, still use this skill’s rules and the same output path when updating a brief:
+If the user runs a slice instead of full refresh, still use this skill’s rules:
 
 | Invoke | Produce / update |
 |--------|------------------|
-| `/feature-intent` | Problem/job + Intent (+ assumptions that affect intent) |
-| `/feature-flows` | Flows |
-| `/eng-questions` | Eng questions only (max 2–3), from gaps in code or an existing brief |
+| `/feature-intent` | Problem/job + Intent (+ assumptions that affect intent) — still run preflight if intent is blocked |
+| `/feature-flows` | Flows — still run preflight if a branch is blocked |
+| `/eng-questions` | Preflight only: ask ≤2–3 questions in chat; do not write a brief section |
 
 Prefer `/dsgn-refresh` for the normal handoff.
 
