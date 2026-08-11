@@ -5,13 +5,14 @@ description: >-
   free-text feature name, and writes a shareable Markdown file under
   docs/design-briefs/. Use when the user runs /dsgn-refresh, asks for a design
   refresh brief, or needs designers to redesign an already-built feature from
-  repo evidence.
+  repo evidence. Works with any AI coding agent that can load SKILL.md packs
+  (Cursor, Claude Code, and similar).
 disable-model-invocation: true
 ---
 
 # /dsgn-refresh
 
-Dev-runnable, **codebase-first** brief for design. Produces one short Markdown file so designers can redesign from (1) this doc and (2) staging they already have.
+Portable AI-agent skill (not tied to one IDE). Dev-runnable, **codebase-first** brief for design. Produces one short Markdown file so designers can redesign from (1) this doc and (2) staging they already have.
 
 Not a standards audit. Not a boss interview. Not discovery theater. Not Jira cleanup.
 
