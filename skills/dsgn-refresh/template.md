@@ -55,6 +55,7 @@ Use **screen names and user-visible actions**, not file paths or route strings.
 Guesses that still need a human check. Prefer fewer, sharper items.
 Do **not** list unanswered eng questions here — those were resolved in the chat preflight (or skipped).
 Say **designers** when referring to readers — not juniors or other titles.
+If mentioning how to redesign, prefer: “Redesign from this brief together with the live-link.” Never say “you do not need the repo.”
 
 1. …
 2. …
