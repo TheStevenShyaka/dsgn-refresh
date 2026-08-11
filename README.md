@@ -53,10 +53,11 @@ Body:
 2. **Intent** — what the feature is trying to achieve  
 3. **Flows** — happy path + key branches (screen names + CTAs, not file paths)  
 4. **Locked vs flexible** — what redesign must respect vs can reshape  
-5. **Assumptions**  
-6. **Eng questions** — at most 2–3 blockers (omit if unnecessary)
+5. **Assumptions**
 
 Juniors can open the `.md` in Drive/Docs/Notion later; they do not need Cursor.
+
+**Eng questions are not in the brief.** They are a chat preflight (max 2–3) so the agent can fill gaps before writing the file.
 
 ---
 
@@ -64,10 +65,10 @@ Juniors can open the `.md` in Drive/Docs/Notion later; they do not need Cursor.
 
 | Command | What it does |
 |---------|----------------|
-| **`/dsgn-refresh <feature>`** | Main command — full short brief |
+| **`/dsgn-refresh <feature>`** | Main command — preflight if needed, then full short brief |
 | `/feature-intent <feature>` | Problem/job + Intent only |
 | `/feature-flows <feature>` | Flows only |
-| `/eng-questions <feature>` | At most 2–3 eng questions |
+| `/eng-questions <feature>` | Preflight only — ask ≤2–3 questions in chat (no brief section) |
 
 Feature scope is **free text**, e.g. `onboarding`, `month review hero`, `onboarding paywall`.
 
@@ -105,16 +106,18 @@ Then in Agent chat:
 
 1. Take the free-text feature name  
 2. Search the **codebase** (routes, screens, copy, state, comments)  
-3. Extract intent + flows; label claims `Observed` vs `Inferred`  
-4. Write `docs/design-briefs/<slug>-brief.md` from `template.md`  
-5. Reply with the file path + confidence + any eng questions (not the whole brief)
+3. Draft intent + flows privately; label claims `Observed` vs `Inferred`  
+4. **If blockers remain:** ask at most 2–3 eng questions **in chat** and **wait**  
+5. Fold answers into the draft  
+6. Write `docs/design-briefs/<slug>-brief.md` from `template.md` (no Eng questions section)  
+7. Reply with the file path + confidence (not the whole brief)
 
 **Rules that matter:**
 
 - Code is truth — not messy tickets or chat history  
 - No fake stakeholder goals  
-- No file-path / “code map” dumps in the shared brief (designers usually lack repo access)  
-- Ask eng only when redesign is blocked — max 2–3 quick questions  
+- No file-path / “code map” dumps in the shared brief  
+- Eng questions improve the brief; they are not designer-facing output  
 
 Full instructions live in [`.cursor/skills/dsgn-refresh/SKILL.md`](.cursor/skills/dsgn-refresh/SKILL.md).
 
@@ -123,16 +126,16 @@ Full instructions live in [`.cursor/skills/dsgn-refresh/SKILL.md`](.cursor/skill
 ## Suggested team loop
 
 1. Eng finishes a foundation slice of a feature  
-2. Eng runs `/dsgn-refresh <feature>` in that repo  
+2. Eng runs `/dsgn-refresh <feature>` (answers 2–3 chat questions if the agent asks)  
 3. Eng shares the Markdown brief (and staging link) with design  
 4. Design redesigns against intent + flows + locked constraints  
-5. Quick validation with eng (answer the 2–3 questions if any)  
+5. Quick design validation as usual  
 
 ---
 
 ## Versioning
 
-- **v1** — intent + flows brief; designer-facing Markdown; codebase as source of truth  
+- **v1** — intent + flows brief; designer-facing Markdown; codebase as source of truth; eng preflight in chat  
 - **Later** — design-standards checklist, clearer ticket templates, optional Notion/Drive export  
 
 This repo is the shareable home for the skill while teams try it on real products.
