@@ -12,7 +12,7 @@ disable-model-invocation: true
 
 # /dsgn-refresh
 
-Portable AI-agent skill (not tied to one IDE). Dev-runnable, **codebase-first** brief for design. Produces one short Markdown file so designers can redesign from (1) this doc and (2) staging they already have.
+Portable AI-agent skill (not tied to one IDE). Dev-runnable, **codebase-first** brief for design. Produces one short Markdown file so designers can redesign from (1) this doc and (2) the live-link they already have.
 
 Not a standards audit. Not a boss interview. Not discovery theater. Not Jira cleanup.
 
@@ -29,7 +29,7 @@ If the feature name is missing, ask once for it, then continue.
 | **Codebase** | Required. Only trusted source |
 | Comments in code | Helpful hints — verify against real routes/UI/state |
 | Eng answers (chat) | Preflight clarifications that improve the brief — not pasted as a Q&A section |
-| Staging / preview | For designers judging the UI — not an input this skill must record |
+| Live-link | For designers judging the UI — not an input this skill must record |
 | Slack / Linear / Jira / chat history | Ignore for v1 unless the user pastes text into the prompt |
 
 Never invent ticket history or stakeholder goals that are not evidenced in code (or in answers the eng runner gives).
@@ -41,11 +41,12 @@ Never invent ticket history or stakeholder goals that are not evidenced in code 
 3. **Comments help, don’t worship them** — AI/dev comments can be wrong; cross-check behavior.
 4. **No fake tickets** — do not invent Jira/Slack context.
 5. **Eng questions are a preflight, not an output section** — ask at most 2–3 blocker questions **in chat before writing the brief**, as **multiple choice** (A/B/C…). Wait for answers. Never put an “Eng questions” section in the Markdown.
-6. **Write for designers** — plain language flows and intent. Say **designers** (not juniors, leads, or other titles). Most readers do **not** have repo access.
+6. **Write for designers** — plain language flows and intent. Say **designers** (not juniors, leads, or other titles). Do not add cringe lines like “you do not need the repo.”
 7. **No codebase dump in the brief** — use the repo to extract truth, but do **not** put file paths, route strings (`/(auth)/…`), or a “code map” in the Markdown. Name screens and user actions instead.
 8. **Ship a file** — always write Markdown to disk (not chat-only), only after the preflight is done (or skipped because nothing critical is unclear).
 9. **One feature** — stay inside the named scope; do not boil the whole app.
-10. **Brief header stays thin** — only **Scope** and **Confidence**. Do not add Generated date or Staging/preview fields.
+10. **Brief header stays thin** — only **Scope** and **Confidence**. Do not add Generated date or live-link fields.
+11. **Say live-link, not staging** — when referring to the built app designers open, use **live-link**.
 
 ## Workflow
 
