@@ -11,12 +11,14 @@ disable-model-invocation: true
 
 Slice of **dsgn-refresh**. Read and follow [../dsgn-refresh/SKILL.md](../dsgn-refresh/SKILL.md) working rules and source-of-truth rules.
 
+This slice is a private draft for the person running it. `/dsgn-refresh` is the shareable handoff.
+
 ## Do
 
 1. Require a free-text feature name. Ask once if missing.
 2. Locate the feature in the codebase. Code is required. Ignore Jira/Slack unless pasted.
-3. Draft Problem / job and Intent only, with `Observed` / `Inferred` labels.
+3. Draft Problem / job and Intent only, with `Observed` / `Inferred` labels. Include How often. Include What's awkward only if it changes intent.
 4. Include assumptions that affect intent. Do not invent stakeholder strategy.
-5. If intent is blocked by an unclear product rule, ask 2 or 3 multiple-choice eng questions in chat, never more, and wait. Do not put them in the brief.
-6. Write or update `docs/design-briefs/<slug>-brief.md` using [../dsgn-refresh/template.md](../dsgn-refresh/template.md). If the file exists, refresh those sections and leave other sections intact when possible. If missing, create the file with those sections filled and stub the rest lightly: `TBD. Run /dsgn-refresh for the full brief`.
-7. Reply with the file path only.
+5. If intent is blocked by an unclear product rule, ask 2 or 3 multiple-choice questions in chat, never more, and wait. Ask the person who ran this skill. Do not put the questions in the brief.
+6. Write or update `docs/design-briefs/<slug>-brief.md` using [../dsgn-refresh/template.md](../dsgn-refresh/template.md). If the file exists, refresh those sections and leave other sections intact when possible. If missing, create the file with those sections filled, stub the rest with `TBD. Run /dsgn-refresh for the full brief`, and put `Incomplete. Private draft. Run /dsgn-refresh before sharing.` at the top.
+7. Reply with the file path, and say it is incomplete if the file is still a stub.
